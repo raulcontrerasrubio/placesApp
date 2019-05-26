@@ -17,13 +17,21 @@ export default class Places extends Component {
     });
   };
 
+  placeDeletedHandler = id => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter((place, index) => index !== id)
+      };
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <AddPlace
           placeSubmitHandler={(placeName) => this.placeSubmitHandler(placeName)}
         />
-        <PlaceList places={this.state.places} />
+        <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler}/>
       </View>
     );
   }
