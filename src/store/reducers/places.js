@@ -5,13 +5,15 @@ const initialState = {
   selectedPlace: null
 };
 
+let currentKey = 0;
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case ADD_PLACE:
       return {
         ...state,
-        places: prevState.places.concat({
-          key: (++this.currentKey).toString(),
+        places: state.places.concat({
+          key: (++currentKey).toString(),
           name: action.placeName,
           image: {
             uri: "https://facebook.github.io/react/logo-og.png"
