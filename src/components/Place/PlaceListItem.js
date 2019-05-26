@@ -1,16 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const listItem = (props) => {
+const PlaceListItem = (props) => {
   return (
-  <View style={styles.listItem}>
+  <View style={styles.PlaceListItem}>
     <Text>{props.placeName}</Text>
   </View>
   );
 }
 
 const styles = StyleSheet.create({
-  listItem: {
+  PlaceListItem: {
     width: '100%',
     padding: 10,
     backgroundColor: '#eee',
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default listItem;
+export default PlaceListItem;

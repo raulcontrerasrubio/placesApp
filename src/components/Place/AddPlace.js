@@ -3,19 +3,37 @@ import { View, TextInput, StyleSheet, Button } from "react-native";
 
 export default class AddPlace extends Component {
 
+  state = {
+    placeName: ''
+  }
+
+  placeNameChangedHandler = val => {
+    this.setState({
+      placeName: val
+    });
+  };
+
+  placeSubmitHandler = () => {
+    if (this.state.placeName.trim() === "") return;
+    this.setState({
+      placeName: ''
+    });
+    this.props.placeSubmitHandler(this.state.placeName);
+  }
+
   render() {
     return (
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.inputPlace}
           placeholder="An awesome place"
-          value={this.props.placeName}
-          onChangeText={this.props.placeNameChangedHandler}
+          value={this.state.placeName}
+          onChangeText={this.placeNameChangedHandler}
         />
         <Button
           title="Add"
-          style={styles.button}
-          onPress={this.props.placeSubmitHandler}
+          style={styles.buttonSubmitPlace}
+          onPress={this.placeSubmitHandler}
         />
       </View>
     );
@@ -30,10 +48,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-  input: {
+  inputPlace: {
     width: "70%"
   },
-  button: {
+  buttonSubmitPlace: {
     width: "30%"
   }
 });

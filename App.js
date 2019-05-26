@@ -6,49 +6,13 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
-import AddPlace from './src/components/AddPlace/AddPlace';
-import List from './src/components/List/List';
+import React, { Component } from "react";
+import Place from "./src/components/Place/Place";
 
 export default class App extends Component {
-  state = {
-    placeName: '',
-    places: []
-  }
-
-  placeNameChangedHandler = (val) => {
-    this.setState({
-      placeName: val
-    })
-  }
-
-  placeSubmitHandler = () => {
-    if(this.state.placeName.trim() === '') return;
-
-    this.setState(prevState => {
-      return {
-        places: prevState.places.concat(prevState.placeName),
-        placeName: ''
-      };
-    });
-  }
-  
   render() {
     return (
-      <View style={styles.container}>
-        <AddPlace placeName={this.state.placeName} placeNameChangedHandler={(val) => this.placeNameChangedHandler(val)} placeSubmitHandler={()=>this.placeSubmitHandler()}/>
-        <List places={this.state.places}/>
-      </View>
+      <Place/>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop:20,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  }
-});
