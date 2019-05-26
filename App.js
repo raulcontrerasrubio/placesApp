@@ -7,12 +7,23 @@
  */
 
 import React, { Component } from "react";
-import Place from "./src/components/Place/Place";
+import Places from "./src/components/Places/Places";
+import {View, StyleSheet} from 'react-native';
 
 export default class App extends Component {
   render() {
     return (
-      <Place/>
+      <View style={styles.centeredComponent}>
+        <Places/>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  centeredComponent: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 20,
+  }
+})

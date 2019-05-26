@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import AddPlace from './AddPlace';
 import PlaceList from './PlaceList';
 
-export default class Place extends Component {
+export default class Places extends Component {
 
   state = {
     places: []
@@ -31,9 +31,9 @@ export default class Place extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    width: '90%',
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "center",
     backgroundColor: "#fff"
   }
 });
