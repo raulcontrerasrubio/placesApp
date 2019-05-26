@@ -1,15 +1,17 @@
 import React from 'react';
 import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const PlaceListItem = (props) => {
-  return (
-  <TouchableOpacity onPress={props.onItemPress}>
-    <View style={styles.PlaceListItem}>
-      <Image style={styles.placeImage} source={props.placeImage} resizeMode='cover'/>
-      <Text>{props.placeName}</Text>
-    </View>
-  </TouchableOpacity>
-  );
+class PlaceListItem extends React.PureComponent{
+  render(){
+    return (
+      <TouchableOpacity onPress={this.props.onItemPress}>
+        <View style={styles.PlaceListItem}>
+          <Image style={styles.placeImage} source={this.props.placeImage} resizeMode='cover'/>
+          <Text>{this.props.placeName}</Text>
+        </View>
+      </TouchableOpacity>
+      );
+  }
 }
 
 const styles = StyleSheet.create({

@@ -2,45 +2,72 @@ import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import AddPlace from "./AddPlace";
 import PlaceList from "./PlaceList";
-
-// import placeImage from '../../assets/nature.jpg';
+import PlaceDetail from "./PlaceDetail";
 
 export default class Places extends Component {
   state = {
-    places: []
+    places: [],
+    selectedPlace: null
   };
+
+  currentKey = 0;
 
   placeSubmitHandler = placeName => {
     this.setState(prevState => {
       return {
         places: prevState.places.concat({
-          key: Math.random().toString(),
+          key: (++this.currentKey).toString(),
           name: placeName,
           image: {
-            uri: 'https://facebook.github.io/react/logo-og.png'
+            uri: "https://facebook.github.io/react/logo-og.png"
           }
         })
       };
     });
   };
 
-  placeDeletedHandler = id => {
+  placeSelectedHandler = key => {
     this.setState(prevState => {
       return {
-        places: prevState.places.filter((place) => place.key !== id.toString())
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key;
+        })
       };
+    });
+  };
+
+  placeDeletedHandler = key => {
+    this.setState(prevState => {
+      return {
+        selectedPlace: null,
+        places: prevState.places.filter(
+          place => place.key !== prevState.selectedPlace.key.toString()
+        )
+      };
+    });
+  };
+
+  modalCloseHandler = () => {
+    this.setState({
+      selectedPlace: null
     });
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <PlaceDetail
+          selectedPlace={this.state.selectedPlace}
+          onItemDeleted={this.placeDeletedHandler}
+          onModalClosed={this.modalCloseHandler}
+        />
+
         <AddPlace
           placeSubmitHandler={placeName => this.placeSubmitHandler(placeName)}
         />
         <PlaceList
           places={this.state.places}
-          onItemDeleted={this.placeDeletedHandler}
+          onItemSelected={this.placeSelectedHandler}
         />
       </View>
     );
