@@ -43,7 +43,7 @@ export default class AddPlace extends Component {
 const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
-    padding: 20,
+    paddingTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"

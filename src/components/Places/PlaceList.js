@@ -1,15 +1,22 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView, FlatList } from "react-native";
 import PlaceListItem from "./PlaceListItem";
 
 export default class PlaceList extends Component {
-
-
   render() {
-    const placesOutput = this.props.places.map((place, index) => (
-      <PlaceListItem key={index} placeName={place} onItemPress={() => this.props.onItemDeleted(index)}/>
-    ));
-    return <View style={styles.placesList}>{placesOutput}</View>;
+    return (
+      <FlatList
+        style={styles.placesList}
+        data={this.props.places}
+        renderItem={(info) => (
+          <PlaceListItem
+            placeName={info.item.name}
+            placeImage={info.item.image}
+            onItemPress={() => this.props.onItemDeleted(info.item.key)}
+          />
+        )}
+      />
+    );
   }
 }
 
