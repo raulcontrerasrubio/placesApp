@@ -1,29 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import {Navigation} from 'react-native-navigation';
+import AuthScreen from './src/screens/Auth/Auth';
 
-import React, { Component } from "react";
-import Places from "./src/components/Places/Places";
-import {View, StyleSheet} from 'react-native';
+// Register Screens
+Navigation.registerComponent("placesApp.AuthScreen", () => AuthScreen);
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.centeredComponent}>
-        <Places/>
-      </View>
-    );
+// Start the App
+Navigation.startSingleScreenApp({
+  screen: {
+    screen: 'placesApp.AuthScreen',
+    title: 'Login'
   }
-}
-
-const styles = StyleSheet.create({
-  centeredComponent: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 20,
-  }
-});
+})
