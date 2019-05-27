@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   View,
   Image,
@@ -8,20 +8,38 @@ import {
   TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import { connect } from "react-redux";
+import { deletePlace } from "../../store/actions/index";
 
-const PlaceDetailScreen = props => (
-  <View style={styles.container}>
-    <View>
-      <Image source={props.selectedPlace.image} style={styles.image} />
-      <Text style={styles.text}>{props.selectedPlace.name}</Text>
-    </View>
-    <View style={styles.actionBox}>
-      <TouchableOpacity onPress={props.onItemDeleted}>
-        <Icon size={30} name="ios-trash" color="red" />
-      </TouchableOpacity>
-    </View>
-  </View>
-);
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeletePlace: key => dispatch(deletePlace(key))
+  };
+};
+
+class PlaceDetailScreen extends Component {
+  placeDeletedHandler = () => {
+    this.props.onDeletePlace(this.props.selectedPlace.key);
+    this.props.navigator.pop({
+    })
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Image source={this.props.selectedPlace.image} style={styles.image} />
+          <Text style={styles.text}>{this.props.selectedPlace.name}</Text>
+        </View>
+        <View style={styles.actionBox}>
+          <TouchableOpacity onPress={this.placeDeletedHandler}>
+            <Icon size={30} name="ios-trash" color="red" />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -44,4 +62,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PlaceDetailScreen;
+export default connect(
+  null,
+  mapDispatchToProps
+)(PlaceDetailScreen);
