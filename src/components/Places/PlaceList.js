@@ -9,6 +9,7 @@ export default class PlaceList extends Component {
       <PlaceListItem
             placeName={info.item.name}
             placeImage={info.item.image}
+            onItemPress={() => this.props.onItemSelected(info.item.key)}
           />
     )
   }
