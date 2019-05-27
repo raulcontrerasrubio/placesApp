@@ -18,7 +18,7 @@ export default class AddPlace extends Component {
     this.setState({
       placeName: ''
     });
-    this.props.placeSubmitHandler(this.state.placeName);
+    this.props.onPlaceAdded(this.state.placeName);
   }
 
   render() {

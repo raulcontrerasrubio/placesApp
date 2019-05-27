@@ -66,8 +66,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddPlace: (placeName) => dispatch(addPlace(placeName)),
     onDeletePlace: (key) => dispatch(deletePlace(key)),
-    onSelectPlace: (key) => dispatch(selectPlace(key)),
-    onDeselectPlace: () => dispatch(deselectPlace()),
+    // onSelectPlace: (key) => dispatch(selectPlace(key)),
+    // onDeselectPlace: () => dispatch(deselectPlace()),
   }
 };
 

@@ -4,7 +4,7 @@ import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 class PlaceListItem extends React.PureComponent{
   render(){
     return (
-      <TouchableOpacity onPress={this.props.onItemPress}>
+      <TouchableOpacity>
         <View style={styles.PlaceListItem}>
           <Image style={styles.placeImage} source={this.props.placeImage} resizeMode='cover'/>
           <Text>{this.props.placeName}</Text>
