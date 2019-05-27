@@ -20,8 +20,7 @@ const mapDispatchToProps = dispatch => {
 class PlaceDetailScreen extends Component {
   placeDeletedHandler = () => {
     this.props.onDeletePlace(this.props.selectedPlace.key);
-    this.props.navigator.pop({
-    })
+    this.props.navigator.pop()
   }
 
   render() {
