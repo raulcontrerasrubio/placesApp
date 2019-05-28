@@ -11,10 +11,19 @@ import MainText from "./MainText";
 
 const DefaultButton = props => {
   const content = (
-    <View style={[styles.button, { backgroundColor: props.backgroundColor }]}>
-      <MainText>{props.title}</MainText>
+    <View
+      style={[
+        styles.button,
+        { backgroundColor: props.backgroundColor },
+        props.disabled ? styles.disabled : null
+      ]}
+    >
+      <MainText style={props.disabled ? styles.disabledText : null}>
+        {props.title}
+      </MainText>
     </View>
   );
+  if (props.disabled) return content;
 
   if (Platform.OS === "android") {
     return (
@@ -33,6 +42,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "black"
+  },
+  disabled: {
+    backgroundColor: "#eee",
+    borderColor: "#aaa"
+  },
+  disabledText: {
+    color: "#aaa"
   }
 });
 
