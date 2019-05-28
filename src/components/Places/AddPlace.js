@@ -8,6 +8,7 @@ export default class AddPlace extends Component {
         placeHolder="Place Name"
         value={this.props.placeName}
         onChangeText={this.props.onChangeText}
+        placeholderTextColor="#333"
       />
     );
   }
