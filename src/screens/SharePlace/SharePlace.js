@@ -18,6 +18,10 @@ class SharePlaceScreen extends Component {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
+  static navigatorStyle = {
+    navBarButtonColor: 'orange'
+  }
+
   state = {
     placeName: ''
   }
