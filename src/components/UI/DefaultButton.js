@@ -1,14 +1,30 @@
-import React from 'react';
-import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
-import MainText from './MainText';
+import React from "react";
+import {
+  Platform,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+  Text,
+  View,
+  StyleSheet
+} from "react-native";
+import MainText from "./MainText";
 
-const DefaultButton = props => (
-  <TouchableOpacity onPress={props.onPress}>
-    <View style={[styles.button, {backgroundColor: props.backgroundColor}]}>
+const DefaultButton = props => {
+  const content = (
+    <View style={[styles.button, { backgroundColor: props.backgroundColor }]}>
       <MainText>{props.title}</MainText>
     </View>
-  </TouchableOpacity>
-);
+  );
+
+  if (Platform.OS === "android") {
+    return (
+      <TouchableNativeFeedback onPress={props.onPress}>
+        {content}
+      </TouchableNativeFeedback>
+    );
+  }
+  return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -16,8 +32,8 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black"
   }
-})
+});
 
-export default DefaultButton
+export default DefaultButton;

@@ -32,7 +32,7 @@ class PlaceDetailScreen extends Component {
         </View>
         <View style={styles.actionBox}>
           <TouchableOpacity onPress={this.placeDeletedHandler}>
-            <Icon size={30} name="ios-trash" color="red" />
+            <Icon size={30} name={Platform.OS === 'android' ? 'md-trash' : "ios-trash"} color="red" />
           </TouchableOpacity>
         </View>
       </View>
