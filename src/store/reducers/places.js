@@ -15,8 +15,9 @@ const reducer = (state = initialState, action) => {
           key: (++currentKey).toString(),
           name: action.placeName,
           image: {
-            uri: "https://facebook.github.io/react/logo-og.png"
-          }
+            uri: action.image.uri
+          },
+          location: action.location
         })
       };
     case DELETE_PLACE:

@@ -60,6 +60,10 @@
 	<false/>
 	<key>NSLocationUsageDescription</key>
 	<string>Let&apos;s share a place!</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You want to share an image?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Let&apos;s take a photo</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

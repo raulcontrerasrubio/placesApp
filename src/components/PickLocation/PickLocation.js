@@ -30,6 +30,10 @@ class PickLocation extends Component {
       },
       locationChosen: true
     });
+    this.props.onPickLocation({
+      latitude: coords.latitude,
+      longitude: coords.longitude
+    })
   }
 
   getLocationHandler = () => {
@@ -38,13 +42,27 @@ class PickLocation extends Component {
         nativeEvent: {
           coordinate: {
             latitude: pos.coords.latitude,
-            longitude: pos.coords.longitude          }
+            longitude: pos.coords.longitude
+          }
         }
       };
       this.pickLocationHandler(coordsEvent);
     },
     err => {
-      alert('Failed! ' + err)
+      switch(err.code){
+        case 1:
+          alert('You must provide permission if you want to get your current position')
+        break;
+        case 2:
+          alert('Your current position is unavailable. Please, enter it manually');
+        break;
+        case 3:
+          alert('Error! Request Timeout');
+        break;
+        default:
+          alert('Something failed while getting your location. Please, enter it manually')
+        break;
+      }
     })
   }
 

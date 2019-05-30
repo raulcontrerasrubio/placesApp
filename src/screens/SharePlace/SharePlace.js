@@ -23,7 +23,9 @@ class SharePlaceScreen extends Component {
   }
 
   state = {
-    placeName: ''
+    placeName: '',
+    location: {},
+    image: null
   }
 
   onNavigatorEvent = event => {
@@ -45,20 +47,40 @@ class SharePlaceScreen extends Component {
   
   placeAddedHandler = () => {
     if(this.state.placeName.trim() === '') return;
-    this.props.onAddPlace(this.state.placeName);
+    this.props.onAddPlace(this.state.placeName, this.state.location, this.state.image);
     this.setState({
       ...this.state,
-      placeName: ''
+      placeName: '',
+      location: {},
+      image: null
     })
   };
+
+  pickLocationHandler = location => {
+    this.setState(prevState =>{
+      return {
+        ...prevState,
+        location: location
+      }
+    })
+  }
+
+  imagePickedHandler = image => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        image: image
+      }
+    })
+  }
 
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
           <H1>Share a place with us!</H1>
-          <PickImage/>
-          <PickLocation/>
+          <PickImage onImagePicked={this.imagePickedHandler}/>
+          <PickLocation onPickLocation={this.pickLocationHandler}/>
           <AddPlace placeName={this.state.placeName} onChangeText={this.placeNameChangeHandler}/>
           <View style={styles.button}>
             <Button title="Share the place!" onPress={this.placeAddedHandler} />
@@ -71,7 +93,7 @@ class SharePlaceScreen extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlace: placeName => dispatch(addPlace(placeName))
+    onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
   };
 };
 

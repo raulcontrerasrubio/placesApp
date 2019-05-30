@@ -9,6 +9,7 @@ import {
   Dimensions
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import MapView from 'react-native-maps';
 import { connect } from "react-redux";
 import { deletePlace } from "../../store/actions/index";
 
@@ -54,7 +55,16 @@ class PlaceDetailScreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={this.props.selectedPlace.image} style={styles.image} />
+          <Image source={this.props.selectedPlace.image} style={styles.image}/>
+        </View>
+        <View style={styles.imageContainer}>
+          <MapView style={styles.image} initialRegion={{
+            ...this.props.selectedPlace.location,
+            latitudeDelta: .0122,
+            longitudeDelta: Dimensions.get('window').width / Dimensions.get('window').height * .0122
+          }}>
+            <MapView.Marker coordinate={this.props.selectedPlace.location}/>
+          </MapView>
         </View>
         <View style={styles.actionBox}>
           <Text style={styles.text}>{this.props.selectedPlace.name}</Text>
